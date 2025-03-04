@@ -1,0 +1,44 @@
+openapi: 3.0.0
+info:
+  title: Time Zone API
+  description: A simple API to get time zone information for cities and meeting times.
+  version: 1.0.0
+paths:
+  /:
+    get:
+      summary: API Health Check
+      description: Returns a message that the API is working.
+      responses:
+        '200':
+          description: API is working
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "API is working!"
+  /getMeetingTimes:
+    get:
+      summary: Get Meeting Times for Cities
+      description: Returns the meeting times for the specified cities.
+      parameters:
+        - in: query
+          name: cities
+          required: true
+          schema:
+            type: string
+            example: "Paris,Sofia,Tokyo"
+      responses:
+        '200':
+          description: List of meeting times
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                example:
+                  - "Paris: 10:00 AM"
+                  - "Sofia: 12:00 PM"
